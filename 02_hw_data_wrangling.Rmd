@@ -83,11 +83,11 @@ party_incumbent_promote <- us_house_senate_races |>
 knitr::kable(
   party_incumbent_promote,
   digits = 3,
-  col.names = c("Party", "Incumbency", "Average Party Promote")
+  col.names = c("Party", "Incumbency", "Avg. Party Promote")
 )
 ```
 
-
+The type of candidate that sponsored the most promoting ads on average was a democratic incumbent at 0.854%.
 
 \newpage
 
@@ -102,7 +102,19 @@ Create a histogram of this variable for just the US House races. Save the ggplot
 
 ## Answer 3
 
+```{r}
+fb_ads <- fb_ads |>
+  mutate(impressions_millions = impressions / 1e6)
+plot_q3 <- fb_ads |>
+  filter(office == "US House") |>
+  ggplot(mapping = aes(x = impressions_millions)) +
+  geom_histogram(binwidth = 1) +
+  labs(x = "Ad Impressions (Millions)",
+       y= "# of Candidates (Hundreds)")
+plot_q3
+```
 
+The histogram is very "bottom"/left heavy, as many of the candidates fall within the 0-10 million ad impression range. Therefore, the histogram has very large and dominant bars in that range, and very short and harder to view bars when you look at the 10-30 million impressions range, meaning there are significantly fewer candidates who have achieved that many. So, most of the house candidates did not have more than 10 million impressions, but rather most of them had between 0-10 million impressions instead.
 
 \newpage
 
