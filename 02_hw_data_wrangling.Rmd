@@ -55,7 +55,7 @@ incumbency_table <- fb_ads |>
 knitr::kable(incumbency_table)
 ```
 
-There are 2509 challenger candidates, 2022 incumbent candidates, and 2448 open seat candidates. All together there are 6,979 candidates assigned in the data set.
+There are 2,510 challenger candidates, 2,022 incumbent candidates, and 2,482 open seat candidates. All together there are 7,014 candidates assigned in the data set.
 
 \newpage
 
@@ -148,8 +148,8 @@ top_house_candidates <- fb_ads |>
   mutate(cand_name_last = reorder(cand_name_last, impressions_millions))
 
 fb_top_plot <- ggplot(top_house_candidates, mapping = aes(x = impressions_millions, 
-                                                          y = cand_name_last, fill = party))+
-  geom_bar(stat = "identity") +
+                                                          y = cand_name_last))+
+  geom_bar(stat = "identity", aes(fill = party)) +
   labs(title = "Top 15 House Candidates by Facebook Ad Impressions (2017-2018)",
        x = "Facebook Ad Impressions (in millions)",
        y = "Candidate Last Name") +
